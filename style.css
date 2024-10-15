@@ -8,3 +8,15 @@
     transition: none; /* Transition for background color */
 
 }
+
+.prompt
+{
+    display:flex;
+    justify-content: center;
+}
+
+.gridContainer
+{
+    display:flex;
+    justify-content:center;
+}
