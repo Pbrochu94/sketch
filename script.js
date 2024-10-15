@@ -15,6 +15,7 @@ for( let x = 0; x<16;x++)
                 newSquareX.style.border = "2px solid black"
                 newSquareX.style.width= "64px"
                 newSquareX.style.height= "64px"
+                newSquareX.classList.add("hoveringColor")
                 rowContainer.append(newSquareX)
             }
     }

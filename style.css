@@ -1,0 +1,10 @@
+.hoveringColor {
+    background-color: transparent; /* Initial background color */
+    transition: background-color 1s ease; /* Transition for background color */
+}
+
+.hoveringColor:hover {
+    background-color: orange; /* Change background color on hover */
+    transition: none; /* Transition for background color */
+
+}
