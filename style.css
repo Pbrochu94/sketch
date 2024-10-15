@@ -15,6 +15,13 @@
     justify-content: center;
 }
 
+.prompt button
+{
+    height: 32px;
+    margin:12px;
+    font-size:16px;
+}
+
 .gridContainer
 {
     display:flex;
