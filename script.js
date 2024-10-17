@@ -42,7 +42,7 @@ function startingGrid()/*Creation of the grid*/
     }
 }
 
-function addEvent(square)
+function addEvent(square)/*Add event listeners to each square*/
 {
     square.addEventListener("mouseover", hoverOn)
     square.addEventListener("mouseout", hoverOff)
