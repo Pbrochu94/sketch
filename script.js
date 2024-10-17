@@ -3,6 +3,8 @@ let innerGridContainer = document.createElement("div")
 let gridContainer = document.querySelector(".gridContainer")
 gridContainer.append(innerGridContainer)
 innerGridContainer.style.display = "flex"
+innerGridContainer.style.height = "1088px"
+innerGridContainer.style.width = "1088px"
 
 /*Creation of the grid*/
 for( let x = 0; x<16;x++)
