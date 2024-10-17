@@ -1,3 +1,5 @@
+
+
 /*Create the row container and the grid container + selectors and globa perimeters*/ 
 let innerGridContainer = document.createElement("div")
 let gridContainer = document.querySelector(".gridContainer")
@@ -7,12 +9,22 @@ let size = 1088
 let promptAction = document.querySelector("button")
 promptAction.addEventListener("click", changeGridSize)
 
+startingGrid()
+
+
+
 /*create the size the grid must respect*/
 innerGridContainer.style.height = size+'px'
 innerGridContainer.style.width = size+'px'
 
-/*Creation of the grid*/
-for( let x = 0; x<16;x++)/*create 16 vertical rows in the row container*/
+
+let backgroundColorUpdate = []/*Array that will hold only numbers of rgb(255.255.255)*/
+let regex = /\d+/g/*Regular expression used to seperate only the numbers in rgb(255,255,255) */
+
+
+function startingGrid()/*Creation of the grid*/
+{
+    for( let x = 0; x<16;x++)/*create 16 vertical rows in the row container*/
     {
         let rowContainer = document.createElement("div")
         innerGridContainer.append(rowContainer)
@@ -23,11 +35,20 @@ for( let x = 0; x<16;x++)/*create 16 vertical rows in the row container*/
                 newSquareX.style.width= "64px"
                 newSquareX.style.height= "64px"
                 newSquareX.classList.add("hoveringColor")
+                newSquareX.style.backgroundColor = "Rgb(255,255,255)"
+                addEvent(newSquareX)
                 rowContainer.append(newSquareX)
             }
     }
+}
 
-function changeGridSize()
+function addEvent(square)/*Add event listeners to each square*/
+{
+    square.addEventListener("mouseover", hoverOn)
+    square.addEventListener("mouseout", hoverOff)
+}
+
+function changeGridSize()/*new grid creation*/
 {
     innerGridContainer.innerHTML = ""
     let userNumber;
@@ -54,7 +75,23 @@ function changeGridSize()
                     newSquareX.classList.add("hoveringColor")
                     newSquareX.style.height = height+"px"/*Assign the size to each box to fill same grid space*/ 
                     newSquareX.style.width = "100%"
+                    newSquareX.style.backgroundColor = "Rgb(255,255,255)"
+                    addEvent(newSquareX)
                     rowContainer.append(newSquareX)
                 }
-        }
+        } 
+}
+
+
+function hoverOn(square)/*behavior for hovering on*/
+{
+    backgroundColorUpdate = square.target.style.backgroundColor.match(regex)/*store the current value of th square*/
+    square.target.style.backgroundColor = `rgb(${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)})`/*Randomize the value of Red, Green and blue each time the mouse hover*/
+    square.target.style.transition = "none"
+}
+
+function hoverOff(square)/*behavior for hovering off*/
+{
+    square.target.style.transition = "background-color 1s ease"
+    square.target.style.backgroundColor = `Rgb(${backgroundColorUpdate[0] - Math.round((255/100) *10)},${backgroundColorUpdate[0] - Math.round((255/100) *10)},${backgroundColorUpdate[0] - Math.round((255/100) *10)})`
 }
