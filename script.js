@@ -35,7 +35,8 @@ hoverAction.forEach(function(square)
 {
     square.addEventListener("mouseover", function()
     {
-        square.style.backgroundColor = "rgb(255, 165, 0)"
+        let colorRandomizer = 
+        square.style.backgroundColor = `rgb(${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)})`/*Randomize the value of Red, Green and blue each time the mouse hover*/
         square.style.transition = "none"
     })
     square.addEventListener("mouseout", function()
