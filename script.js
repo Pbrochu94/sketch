@@ -86,7 +86,6 @@ function changeGridSize()/*new grid creation*/
 function hoverOn(square)/*behavior for hovering on*/
 {
     backgroundColorUpdate = square.target.style.backgroundColor.match(regex)/*store the current value of th square*/
-    console.log(backgroundColorUpdate)
     square.target.style.backgroundColor = `rgb(${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)})`/*Randomize the value of Red, Green and blue each time the mouse hover*/
     square.target.style.transition = "none"
 }
@@ -95,5 +94,4 @@ function hoverOff(square)/*behavior for hovering off*/
 {
     square.target.style.transition = "background-color 1s ease"
     square.target.style.backgroundColor = `Rgb(${backgroundColorUpdate[0] - Math.round((255/100) *10)},${backgroundColorUpdate[0] - Math.round((255/100) *10)},${backgroundColorUpdate[0] - Math.round((255/100) *10)})`
-    console.log(square.target.style.backgroundColor)
 }
