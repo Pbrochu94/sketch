@@ -28,6 +28,8 @@ promptAction.addEventListener("click", changeGridSize)
 
 function changeGridSize()
 {
+    innerGridContainer.innerHTML = ""
+
     let size = 0
     size = prompt("Size of the grid?")
     for( let x = 0; x<size;x++)
