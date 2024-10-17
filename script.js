@@ -7,6 +7,9 @@ let size = 1088
 let promptAction = document.querySelector("button")
 promptAction.addEventListener("click", changeGridSize)
 
+
+
+
 /*create the size the grid must respect*/
 innerGridContainer.style.height = size+'px'
 innerGridContainer.style.width = size+'px'
@@ -26,6 +29,21 @@ for( let x = 0; x<16;x++)/*create 16 vertical rows in the row container*/
                 rowContainer.append(newSquareX)
             }
     }
+
+let hoverAction = document.querySelectorAll(".hoveringColor")
+hoverAction.forEach(function(square)
+{
+    square.addEventListener("mouseover", function()
+    {
+        square.style.backgroundColor = "rgb(255, 165, 0)"
+        square.style.transition = "none"
+    })
+    square.addEventListener("mouseout", function()
+    {
+        square.style.transition = "background-color 1s ease"
+        square.style.backgroundColor = "transparent"
+    })
+})
 
 function changeGridSize()
 {
