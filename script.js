@@ -26,23 +26,27 @@ for( let x = 0; x<16;x++)/*create 16 vertical rows in the row container*/
                 newSquareX.style.width= "64px"
                 newSquareX.style.height= "64px"
                 newSquareX.classList.add("hoveringColor")
+                newSquareX.style.backgroundColor = "Rgb(255,255,255)"
                 rowContainer.append(newSquareX)
             }
     }
-
+let backgroundColorUpdate = []
+let regex = /\d+/g
 let hoverAction = document.querySelectorAll(".hoveringColor")
 hoverAction.forEach(function(square)
 {
     square.addEventListener("mouseover", function()
-    {
-        let colorRandomizer = 
+    {   
+        backgroundColorUpdate = square.style.backgroundColor.match(regex)
+        console.log(backgroundColorUpdate)
         square.style.backgroundColor = `rgb(${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)})`/*Randomize the value of Red, Green and blue each time the mouse hover*/
         square.style.transition = "none"
     })
     square.addEventListener("mouseout", function()
     {
         square.style.transition = "background-color 1s ease"
-        square.style.backgroundColor = "transparent"
+        square.style.backgroundColor = `Rgb(${backgroundColorUpdate[0] - Math.round((255/100) *10)},${backgroundColorUpdate[0] - Math.round((255/100) *10)},${backgroundColorUpdate[0] - Math.round((255/100) *10)})`
+        console.log(square.style.backgroundColor)
     })
 })
 
