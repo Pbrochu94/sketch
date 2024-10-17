@@ -30,7 +30,13 @@ for( let x = 0; x<16;x++)/*create 16 vertical rows in the row container*/
 function changeGridSize()
 {
     innerGridContainer.innerHTML = ""
-    let userNumber = prompt("Size of the grid?")
+    let userNumber;
+    do /*Check if prompt is a number and bigger than 0 up to 100 (1 to 100)*/
+    {
+        userNumber = prompt("Size of the grid?")
+    }
+    while(userNumber > 100 || userNumber <= 0 || isNaN(userNumber))
+
     let height = 1088/userNumber /*Calculate the height per block to fill same grid space after change*/ 
     for( let x = 0; x<userNumber;x++)/*create "user amount" of vertical rows in the row container*/
         {
