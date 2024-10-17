@@ -1,3 +1,5 @@
+
+
 /*Create the row container and the grid container + selectors and globa perimeters*/ 
 let innerGridContainer = document.createElement("div")
 let gridContainer = document.querySelector(".gridContainer")
@@ -7,6 +9,7 @@ let size = 1088
 let promptAction = document.querySelector("button")
 promptAction.addEventListener("click", changeGridSize)
 
+startingGrid()
 
 
 
@@ -14,8 +17,22 @@ promptAction.addEventListener("click", changeGridSize)
 innerGridContainer.style.height = size+'px'
 innerGridContainer.style.width = size+'px'
 
-/*Creation of the grid*/
-for( let x = 0; x<16;x++)/*create 16 vertical rows in the row container*/
+
+let backgroundColorUpdate = []/*Array that will hold only numbers of rgb(255.255.255)*/
+let regex = /\d+/g/*Regular expression used to seperate only the numbers in rgb(255,255,255) */
+let hoverAction = document.querySelectorAll(".hoveringColor")
+
+
+
+hoverAction.forEach(function(square)/*behaviors on hovering on and off the squares*/
+{
+    square.addEventListener("mouseover", hoverOn)
+    square.addEventListener("mouseout", hoverOff)
+})
+
+function startingGrid()/*Creation of the grid*/
+{
+    for( let x = 0; x<16;x++)/*create 16 vertical rows in the row container*/
     {
         let rowContainer = document.createElement("div")
         innerGridContainer.append(rowContainer)
@@ -30,27 +47,9 @@ for( let x = 0; x<16;x++)/*create 16 vertical rows in the row container*/
                 rowContainer.append(newSquareX)
             }
     }
-let backgroundColorUpdate = []
-let regex = /\d+/g
-let hoverAction = document.querySelectorAll(".hoveringColor")
-hoverAction.forEach(function(square)
-{
-    square.addEventListener("mouseover", function()
-    {   
-        backgroundColorUpdate = square.style.backgroundColor.match(regex)
-        console.log(backgroundColorUpdate)
-        square.style.backgroundColor = `rgb(${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)})`/*Randomize the value of Red, Green and blue each time the mouse hover*/
-        square.style.transition = "none"
-    })
-    square.addEventListener("mouseout", function()
-    {
-        square.style.transition = "background-color 1s ease"
-        square.style.backgroundColor = `Rgb(${backgroundColorUpdate[0] - Math.round((255/100) *10)},${backgroundColorUpdate[0] - Math.round((255/100) *10)},${backgroundColorUpdate[0] - Math.round((255/100) *10)})`
-        console.log(square.style.backgroundColor)
-    })
-})
+}
 
-function changeGridSize()
+function changeGridSize()/*new grid creation*/
 {
     innerGridContainer.innerHTML = ""
     let userNumber;
@@ -80,4 +79,20 @@ function changeGridSize()
                     rowContainer.append(newSquareX)
                 }
         }
+}
+
+
+function hoverOn(square)/*behavior for hovering on*/
+{
+    backgroundColorUpdate = square.target.style.backgroundColor.match(regex)/*store the current value of th square*/
+    console.log(backgroundColorUpdate)
+    square.target.style.backgroundColor = `rgb(${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)},${Math.floor(Math.random() *255)})`/*Randomize the value of Red, Green and blue each time the mouse hover*/
+    square.target.style.transition = "none"
+}
+
+function hoverOff(square)/*behavior for hovering off*/
+{
+    square.target.style.transition = "background-color 1s ease"
+    square.target.style.backgroundColor = `Rgb(${backgroundColorUpdate[0] - Math.round((255/100) *10)},${backgroundColorUpdate[0] - Math.round((255/100) *10)},${backgroundColorUpdate[0] - Math.round((255/100) *10)})`
+    console.log(square.target.style.backgroundColor)
 }
