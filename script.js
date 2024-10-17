@@ -20,15 +20,7 @@ innerGridContainer.style.width = size+'px'
 
 let backgroundColorUpdate = []/*Array that will hold only numbers of rgb(255.255.255)*/
 let regex = /\d+/g/*Regular expression used to seperate only the numbers in rgb(255,255,255) */
-let hoverAction = document.querySelectorAll(".hoveringColor")
 
-
-
-hoverAction.forEach(function(square)/*behaviors on hovering on and off the squares*/
-{
-    square.addEventListener("mouseover", hoverOn)
-    square.addEventListener("mouseout", hoverOff)
-})
 
 function startingGrid()/*Creation of the grid*/
 {
@@ -44,9 +36,16 @@ function startingGrid()/*Creation of the grid*/
                 newSquareX.style.height= "64px"
                 newSquareX.classList.add("hoveringColor")
                 newSquareX.style.backgroundColor = "Rgb(255,255,255)"
+                addEvent(newSquareX)
                 rowContainer.append(newSquareX)
             }
     }
+}
+
+function addEvent(square)
+{
+    square.addEventListener("mouseover", hoverOn)
+    square.addEventListener("mouseout", hoverOff)
 }
 
 function changeGridSize()/*new grid creation*/
@@ -76,9 +75,11 @@ function changeGridSize()/*new grid creation*/
                     newSquareX.classList.add("hoveringColor")
                     newSquareX.style.height = height+"px"/*Assign the size to each box to fill same grid space*/ 
                     newSquareX.style.width = "100%"
+                    newSquareX.style.backgroundColor = "Rgb(255,255,255)"
+                    addEvent(newSquareX)
                     rowContainer.append(newSquareX)
                 }
-        }
+        } 
 }
 
 
